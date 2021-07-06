@@ -1,0 +1,7 @@
+{
+    "target_overrides": {
+        "CORE2": {
+            "platform.stdio-baud-rate": 9600
+        }
+    }
+}
