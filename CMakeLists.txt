@@ -12,9 +12,11 @@ endif()
 
 set(MBED_CONFIG_PATH ${CMAKE_CURRENT_BINARY_DIR} CACHE INTERNAL "")
 set(APP_TARGET firmware)
-set(MBED_PROFILE release)
 
 include(${MBED_PATH}/tools/cmake/app.cmake)
+
+add_subdirectory(lib/Foo) # Foo library
+list(APPEND CUSTOM_LIBS foo)
 
 add_subdirectory(TARGET_CORE2) # custom target CORE2 board
 
@@ -26,7 +28,10 @@ add_executable(${APP_TARGET}
 
 project(${APP_TARGET})
 
-target_link_libraries(${APP_TARGET} mbed-os)
+target_link_libraries(${APP_TARGET} 
+    mbed-os
+    ${CUSTOM_LIBS}
+)
 
 mbed_set_post_build(${APP_TARGET})
 
