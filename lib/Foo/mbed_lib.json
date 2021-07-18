@@ -1,0 +1,11 @@
+{
+    "macros": ["TEST_A=100", "TEST_B=8"],
+    "name": "foo",
+    "config": {
+        "led_pin": {
+            "help": "Default library Serial TX pin.",
+            "macro_name": "FOO_LED_PIN",
+            "value": "LED1"
+        }
+    }
+}

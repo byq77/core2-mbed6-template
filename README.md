@@ -1,4 +1,4 @@
-# CORE2 firmware template for Mbed Os 6.x and CLI2
+# CORE2 firmware template for mbed-os>=6.13 and CLI2
 
 > Tested on Ubuntu 20.04.2 LTS
 
@@ -21,8 +21,8 @@
 
 ```bash
 $ cd ~
-$ wget https://github.com/ARMmbed/mbed-os/archive/refs/tags/mbed-os-6.12.0.zip
-$ unzip mbed-os-6.12.0.zip && ln -s mbed-os-mbed-os-6.12.0 mbed-os
+$ wget https://github.com/ARMmbed/mbed-os/archive/refs/tags/mbed-os-6.13.0.zip
+$ unzip mbed-os-6.13.0.zip && ln -s mbed-os-mbed-os-6.13.0 mbed-os
 ```
 
 2. Create `python3` virtual environment.
@@ -36,8 +36,8 @@ $ python3 -m venv .venv
 
 ```bash
 $ source ~/.venv/bin/activate
-(.venv) $ python -m pip install mbed-tools
-(.venv) $ python -m pip install -r ~/mbed-os/requirements.txt 
+(.venv) $ pip install mbed-tools
+(.venv) $ pip install -r ~/mbed-os/requirements.txt 
 ```
 
 ### Setup template in VSC

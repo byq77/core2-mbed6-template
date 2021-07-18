@@ -6,12 +6,12 @@
 class Foo final
 {
 public:
-    Foo(int a, int b) : _a(a), _b(b), _led(LED1)
+    Foo(int a, int b) : _a(a), _b(b), _led(FOO_LED_PIN)
     {
         _ticker.attach(callback(this, &Foo::blinker), BLINK_INTERVAL);
     }
 
-    Foo() : Foo(100, 20) {}
+    Foo() : Foo(TEST_A, TEST_B) {}
 
     int getA() { return _a; }
     int getB() { return _b; }
