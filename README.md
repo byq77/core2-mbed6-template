@@ -95,3 +95,11 @@ $ ./core2-flasher ./cmake_build/CORE2/release/GCC_ARM/firmware.hex
 ```bash
 (.venv) $ mbed-tools sterm -b 9600 -p /dev/ttyUSB0
 ```
+
+## CORE2
+https://husarion.com/manuals/core2/
+
+###  Pinout
+This board pinout is described in `src/TARGET_CORE2/PinNames.h` file. Pin names defined in that file are similar to ones used by `hFramework` and should be easily identifiable. Peripheral functions available for each pin are described in the `PeripheralPinMaps.h` file.
+
+![CORE2 PINOUT](https://husarion.com/docs/assets/img/core2-hardware/cheatsheet_small.jpg)
