@@ -93,7 +93,7 @@ $ ./core2-flasher ./cmake_build/CORE2/release/GCC_ARM/firmware.hex
 ## Serial
 
 ```bash
-(.venv) $ mbed-tools sterm -b 9600 -p /dev/ttyUSB0
+(.venv) $ mbed-tools sterm -b 9600 -p <port>
 ```
 
 ## CORE2

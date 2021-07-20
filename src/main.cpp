@@ -8,7 +8,7 @@ int main()
     while(1)
     {
         printf("Hello, Mbed!\n");
-        printf("NWD(%d, %d) = %d", foo.getA(), foo.getB(), foo.nwd());
+        printf("Foo test: NWD(%d, %d) = %d\n", foo.getA(), foo.getB(), foo.nwd());
         ThisThread::sleep_for(1s);
     }
     return 0;
