@@ -1,0 +1,3 @@
+[submodule "lib/stm32customtargets"]
+	path = lib/stm32customtargets
+	url = https://github.com/ARMmbed/stm32customtargets.git

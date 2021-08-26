@@ -20,27 +20,32 @@
 1. Download `mbed-os` library.
 
 ```bash
-$ cd ~
-$ wget https://github.com/ARMmbed/mbed-os/archive/refs/tags/mbed-os-6.13.0.zip
-$ unzip mbed-os-6.13.0.zip && ln -s mbed-os-mbed-os-6.13.0 mbed-os
+git clone -b latest --depth 1 https://github.com/ARMmbed/mbed-os ~/mbed-os
 ```
 
 2. Create `python3` virtual environment.
 
 ```bash
-$ cd ~
-$ python3 -m venv .venv
+python3 -m venv ~/.mbed6_venv
 ```
 
-3. Install all required python packages in `.venv` environment
+3. Install all required python packages in `.mbed6_venv` environment
 
 ```bash
-$ source ~/.venv/bin/activate
-(.venv) $ pip install mbed-tools
-(.venv) $ pip install -r ~/mbed-os/requirements.txt 
+source ~/.mbed6_venv/bin/activate
+pip install mbed-tools
+pip install -r ~/mbed-os/requirements.txt 
 ```
 
 ### Setup template in VSC
+
+#### Fetch and init dependencies
+
+```bash
+git submodule update --init --recursive
+```
+
+#### IDE config
 
 All required extension are listed in `.vscode/extensions.json`. 
 For this template and all extensions to work correctly edit configurations in `.vscode/settings.json`:
@@ -64,22 +69,24 @@ For this template and all extensions to work correctly edit configurations in `.
 "python.defaultInterpreterPath": "/home/byq77/.venv/bin/python"
 ```
 
-### Generate cmake configuration (release)
+### Generate cmake configuration
+Remember to activate the virtual environment.
 ```bash
-(.venv) $ mbed-tools configure -m CORE2 -t GCC_ARM -b release --mbed-os-path $MBED_OS_LIB_PATH
+mbed-tools configure -m CORE2 -t GCC_ARM -b release --mbed-os-path $MBED_OS_LIB_PATH --custom-targets-json lib/stm32customtargets/custom_targets.json
 ```
 
 ## Build
 
 ### Build using cmake
 ```bash
-$ cmake -S . -B cmake_build/CORE2/release/GCC_ARM -GNinja
-$ cmake --build cmake_build/CORE2/release/GCC_ARM
+cmake -S . -B cmake_build/CORE2/release/GCC_ARM -GNinja
+cmake --build cmake_build/CORE2/release/GCC_ARM
 ```
 
-### Build using mbed-tools 
+### Build using mbed-tools
+Remember to activate the virtual environment. 
 ```bash
-(.venv) $ mbed-tools compile -m CORE2 -t GCC_ARM -b release --mbed-os-path $MBED_OS_LIB_PATH
+mbed-tools compile -m CORE2 -t GCC_ARM -b release --mbed-os-path $MBED_OS_LIB_PATH --custom-targets-json lib/stm32customtargets/custom_targets.json
 ```
 
 ## Uploading firmware using the core2-flasher tool
@@ -87,13 +94,13 @@ Connect CORE2 to your computer via micro-usb port and use the `core2-flasher` to
 
 To flash firmware using `core2-flasher` run:
 ```bash
-$ ./core2-flasher ./cmake_build/CORE2/release/GCC_ARM/firmware.hex
+./core2-flasher ./cmake_build/CORE2/release/GCC_ARM/firmware.hex
 ```
 
 ## Serial
 
 ```bash
-(.venv) $ mbed-tools sterm -b 9600 -p <port>
+mbed-tools sterm -b 9600 -p <port>
 ```
 
 ## CORE2

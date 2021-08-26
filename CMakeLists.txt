@@ -22,7 +22,7 @@ add_executable(${APP_TARGET})
 # USER OPTIONS
 
 # SUBDIRECTORIES
-add_subdirectory(TARGET_CORE2) # custom target CORE2 board
+add_subdirectory(lib/stm32customtargets) # custom targets that include CORE2
 add_subdirectory(lib/Foo EXCLUDE_FROM_ALL) # Foo library
 add_subdirectory(${MBED_PATH} ${CMAKE_CURRENT_BINARY_DIR}/mbed-os)
 
