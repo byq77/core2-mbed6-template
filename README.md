@@ -20,7 +20,7 @@
 1. Download `mbed-os` library.
 
 ```bash
-git clone -b latest --depth 1 https://github.com/ARMmbed/mbed-os ~/mbed-os
+git clone -b latest --depth 1 --single-branch https://github.com/ARMmbed/mbed-os ~/mbed-os 
 ```
 
 2. Create `python3` virtual environment.
@@ -40,6 +40,14 @@ pip install -r ~/mbed-os/requirements.txt
 ### Setup template in VSC
 
 #### Fetch and init dependencies
+
+Clone repo with submodules:
+
+```bash
+git clone --recurse-submodules https://github.com/byq77/core2-mbed6-template.git
+```
+
+or clone and then:
 
 ```bash
 git submodule update --init --recursive
