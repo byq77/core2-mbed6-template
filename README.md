@@ -15,15 +15,15 @@
 
 ## Setup environment
 1. Download `mbed-os` library.
-
+    ```bash
+    git clone -b latest --depth 1 --single-branch https://github.com/ARMmbed/mbed-os ~/mbed-os 
+    ```
 2. Start the dev container using the `Dev Containers: Open Workspace in Container...` command.
-
 3. Fetch and init dependencies
 
     ```bash
     git submodule update --init --recursive
     ```
-
 ## Generate cmake configuration
 ```bash
 mbed-tools configure -m CORE2 -t GCC_ARM -b release --mbed-os-path $MBED_OS_LIB_PATH --custom-targets-json lib/stm32customtargets/custom_targets.json
