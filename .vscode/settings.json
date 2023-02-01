@@ -2,12 +2,9 @@
     "cmake.buildDirectory": "${workspaceFolder}/cmake_build/CORE2/release/GCC_ARM",
     "cmake.configureOnOpen": false,
     "terminal.integrated.env.linux": {
-        "MBED_OS_LIB_PATH": "/home/byq77/mbed-os"
+        "MBED_OS_LIB_PATH": "/mbed-os"
     },
     "cmake.environment": {
-        "MBED_OS_LIB_PATH": "/home/byq77/mbed-os"
-    },
-    "python.defaultInterpreterPath": "~/.mbed6_venv",
-    "python.terminal.activateEnvInCurrentTerminal": true,
-    "python.pythonPath": "~/.mbed6_venv"
+        "MBED_OS_LIB_PATH": "/mbed-os"
+    }
 }

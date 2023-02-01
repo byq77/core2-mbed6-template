@@ -1,0 +1,32 @@
+{
+    "name": "core2-mbed6-dev",
+    "build": {
+        "dockerfile": "Dockerfile",
+        "args": {
+            "WORKSPACE": "${containerWorkspaceFolder}"
+        }
+    },
+    "remoteUser": "husarion",
+    "updateRemoteUserUID": true,
+    "runArgs": [
+        "--network=host",
+        "--security-opt=seccomp:unconfined",
+        "--security-opt=apparmor:unconfined",
+        "--cap-add=SYS_PTRACE",
+        "--privileged",
+        "--volume=/dev/bus/usb/:/dev/bus/usb",
+        "--volume=/run/udev:/run/udev:ro",
+        "--volume=${localEnv:HOME}/mbed-os:/mbed-os",
+        "--group-add=plugdev",
+        "--group-add=dialout",
+        "--group-add=tty"        
+    ],        
+    "settings": {},
+    "extensions": [
+        "ms-vscode.cmake-tools",
+        "ms-vscode.cpptools",
+        "marus25.cortex-debug",
+        "ms-python.python",
+        "maptz.regionfolder"            
+	]
+}    

@@ -3,15 +3,12 @@
     "configurations": [
         {
             "configurationProvider": "ms-vscode.cmake-tools",
-            "name": "Linux",
-            "includePath": ["${default}"],
-            "defines": [],
-            "compilerPath": "${default}",
+            "name": "cli2",
             "compilerArgs": [
                 "-mcpu=cortex-m4",
                 "-mthumb"
             ],
-            "cStandard": "gnu17",
+            "cStandard": "gnu11",
             "cppStandard": "gnu++14",
             "intelliSenseMode": "linux-gcc-arm"
         }
