@@ -15,38 +15,31 @@ set(APP_TARGET firmware)
 
 include(${MBED_PATH}/tools/cmake/app.cmake)
 
-project(${APP_TARGET})
+project(core2-mbed6-template VERSION 1.0.0)
+
+# USER OPTIONS
+option(VERBOSE_BUILD "Have a verbose build process")
+
+# SUBDIRECTORIES
+add_subdirectory(${MBED_PATH} ${CMAKE_CURRENT_BINARY_DIR}/mbed-os)
+add_subdirectory(lib/stm32customtargets) # custom targets that include CORE2
+add_subdirectory(lib/Foo EXCLUDE_FROM_ALL) # Foo library
+
+# TARGET main
+set(APP_TARGET main)
 
 add_executable(${APP_TARGET})
 
-# USER OPTIONS
+target_sources(${APP_TARGET} PRIVATE src/main.cpp)
 
-# SUBDIRECTORIES
-add_subdirectory(lib/stm32customtargets) # custom targets that include CORE2
-add_subdirectory(lib/Foo EXCLUDE_FROM_ALL) # Foo library
-add_subdirectory(${MBED_PATH} ${CMAKE_CURRENT_BINARY_DIR}/mbed-os)
-
-set(FIRMWARE_TARGET_SOURCE_FILES src/main.cpp CACHE INTERNAL "")
-
-get_target_property(FOO_LIB_EXCLUDED foo EXCLUDE_FROM_ALL)
-if(NOT ${FOO_LIB_EXCLUDED})
-    list(APPEND CUSTOM_LIBS foo)
-endif()
-
-target_sources(${APP_TARGET}
-    PRIVATE
-    ${FIRMWARE_TARGET_SOURCE_FILES}
-)
-
-target_link_libraries(${APP_TARGET}
-    PRIVATE 
+target_link_libraries(${APP_TARGET} PRIVATE 
     mbed-os
-    ${CUSTOM_LIBS}
-)
+    foo)
+
+set_target_properties(${APP_TARGET} PROPERTIES ARTIFACT_NAME firmware)
 
 mbed_set_post_build(${APP_TARGET})
 
-option(VERBOSE_BUILD "Have a verbose build process")
 if(VERBOSE_BUILD)
     set(CMAKE_VERBOSE_MAKEFILE ON)
 endif()
