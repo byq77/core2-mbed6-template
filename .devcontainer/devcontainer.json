@@ -3,7 +3,8 @@
     "build": {
         "dockerfile": "Dockerfile",
         "args": {
-            "WORKSPACE": "${containerWorkspaceFolder}"
+            "WORKSPACE": "${containerWorkspaceFolder}",
+            "BUILDKIT_INLINE_CACHE": "0"
         }
     },
     "remoteUser": "husarion",
@@ -20,13 +21,16 @@
         "--group-add=plugdev",
         "--group-add=dialout",
         "--group-add=tty"        
-    ],        
-    "settings": {},
-    "extensions": [
-        "ms-vscode.cmake-tools",
-        "ms-vscode.cpptools",
-        "marus25.cortex-debug",
-        "ms-python.python",
-        "maptz.regionfolder"            
-	]
+    ],
+    "customizations": {
+        "vscode": {
+            "extensions": [
+                "ms-vscode.cmake-tools",
+                "ms-vscode.cpptools",
+                "marus25.cortex-debug",
+                "ms-python.python",
+                "maptz.regionfolder"       
+            ]
+        }
+    }        
 }    

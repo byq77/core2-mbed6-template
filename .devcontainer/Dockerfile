@@ -31,5 +31,4 @@ RUN sudo apt-get update \
     stlink-tools \
     libncurses5 \
     && sudo rm -rf /var/lib/apt/lists/*
-
-CMD [ "bash" ]
+        
