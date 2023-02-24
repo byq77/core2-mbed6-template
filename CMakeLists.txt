@@ -11,7 +11,6 @@ else()
 endif()
 
 set(MBED_CONFIG_PATH ${CMAKE_CURRENT_BINARY_DIR} CACHE INTERNAL "")
-set(APP_TARGET firmware)
 
 include(${MBED_PATH}/tools/cmake/app.cmake)
 
@@ -25,7 +24,7 @@ add_subdirectory(${MBED_PATH} ${CMAKE_CURRENT_BINARY_DIR}/mbed-os)
 add_subdirectory(lib/stm32customtargets) # custom targets that include CORE2
 add_subdirectory(lib/Foo EXCLUDE_FROM_ALL) # Foo library
 
-# TARGET main
+# region main target
 set(APP_TARGET main)
 
 add_executable(${APP_TARGET})
@@ -39,6 +38,7 @@ target_link_libraries(${APP_TARGET} PRIVATE
 set_target_properties(${APP_TARGET} PROPERTIES ARTIFACT_NAME firmware)
 
 mbed_set_post_build(${APP_TARGET})
+# endregion
 
 if(VERBOSE_BUILD)
     set(CMAKE_VERBOSE_MAKEFILE ON)

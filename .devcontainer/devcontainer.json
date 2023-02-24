@@ -25,12 +25,14 @@
     "customizations": {
         "vscode": {
             "extensions": [
-                "ms-vscode.cmake-tools",
-                "ms-vscode.cpptools",
-                "marus25.cortex-debug",
-                "ms-python.python",
-                "maptz.regionfolder"       
-            ]
+				"ms-vscode.cmake-tools",
+				"ms-vscode.cpptools",
+				"marus25.cortex-debug",
+				"ms-python.python",
+				"maptz.regionfolder",
+				"mcu-debug.debug-tracker-vscode",
+				"shd101wyy.markdown-preview-enhanced"
+			]
         }
     }        
 }    

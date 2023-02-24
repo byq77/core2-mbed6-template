@@ -2,19 +2,64 @@
     "version": "2.0.0",
     "tasks": [
         {
-            "label": "FLASH RELEASE FW (ST-LINK)",
+            "label": "FLASH FW (ST-LINK)",
             "type": "shell",
-            "command": "st-flash write ${workspaceFolder}/cmake_build/CORE2/release/GCC_ARM/firmware.bin 0x8000000",
+            "command": "st-flash",
+            "args": [
+                "write",
+                "${workspaceFolder}/cmake_build/CORE2/${input:buildType}/GCC_ARM/firmware.bin",
+                "0x8000000"
+            ]
         },
         {
-            "label": "FLASH DEBUG FW (ST-LINK)",
+            "label": "FLASH FW (CORE2-FLASHER)",
             "type": "shell",
-            "command": "st-flash write ${workspaceFolder}/cmake_build/CORE2/debug/GCC_ARM/firmware.bin 0x8000000",
+            "command": "${workspaceFolder}/core2-flasher",
+            "args": [
+                "${workspaceFolder}/cmake_build/CORE2/${input:buildType}/GCC_ARM/firmware.hex"
+            ]
         },
         {
             "label": "CLEAN",
             "type": "shell",
-            "command": "rm -rf ${workspaceFolder}/cmake_build"
+            "command": "rm",
+            "args": [
+                "-rf",
+                "${workspaceFolder}/cmake_build"
+            ]
         },
+        {
+            "label": "GENERATE CONFIG FOR CMAKE",
+            "type": "shell",
+            "command": "mbed-tools",
+            "args": [
+                "configure",
+                "-m",
+                "CORE2",
+                "-t",
+                "GCC_ARM",
+                "-b",
+                "${input:buildType}",
+                "--mbed-os-path",
+                "$MBED_OS_LIB_PATH",
+                "--app-config",
+                "${workspaceFolder}/mbed_app.json",
+                "--custom-targets-json",
+                "${workspaceFolder}/lib/stm32customtargets/custom_targets.json"
+            ]
+        }
+    ],
+    "inputs": [
+        {
+          "type": "pickString",
+          "id": "buildType",
+          "description": "What type of firmware you want to build?",
+          "options": [
+            "release",
+            "develop",
+            "debug",
+          ],
+          "default": "release"
+        }
     ]
 }
